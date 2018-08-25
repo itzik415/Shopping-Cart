@@ -25,7 +25,7 @@ const item = (props) => {
                 </div>
                 <h2 className='item__style'>Style #: {props.style1}</h2>
                 <h2 className='item__color'>Color: {props.color}</h2>
-                <ItemOptions />
+                <ItemOptions shirt={props.shirt} onClick={props.onClick}/>
             </div>
         </div>
     );

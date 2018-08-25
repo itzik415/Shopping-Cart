@@ -4,54 +4,82 @@ import Item from './Components/item';
 import ItemProperties from './Components/itemProperties';
 import { shirtsList } from './shirtsList';
 import CustomerHelp from './Components/customerHelp';
+import Checkout from './Components/checkout';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      quantity: 0,
+      quantity: [],
+      totalItems: 0,
       size: ['S', 'M', 'L'],
-      color: ['red', 'blue', 'black']
+      color: ['red', 'blue', 'black'],
+      cart: shirtsList
     }
   }
-  render() {
-    const cart = shirtsList.map((shirt, i) => {
-      if(shirtsList.length > shirt.id){
-        return ( 
-          <Item 
-            name={shirtsList[i].name} 
-            price={shirtsList[i].price} 
-            oldPrice={shirtsList[i].oldPrice} 
-            color={shirtsList[i].color} 
-            style={shirtsList[i].style} 
-            image={shirtsList[i].image}
-            quantity={this.state.quantity}
-            size={this.state.size}
-          />
-        )
-      } 
-      if(shirtsList.length === shirt.id) {
-        return (
-          <Item 
-            name={shirtsList[i].name} 
-            price={shirtsList[i].price} 
-            oldPrice={shirtsList[i].oldPrice} 
-            color={shirtsList[i].color} 
-            style1={shirtsList[i].style} 
-            image={shirtsList[i].image}
-            quantity={this.state.quantity}
-            size={this.state.size}
-          />
-        )
-      }
+  
+  handleRemoveItem = (shirt) => {
+    const newCart = this.state.cart.filter((item) => {
+      return shirt.id !== item.id
     })
+    this.setState({cart: newCart})
+  }
+
+  getQuantity = () =>{
+    const array = shirtsList.map((shirt) => {
+      return {amount: shirt.quantity}
+    })
+    console.log(this.state.quantity) 
+    this.setState({quantity: array})
+    console.log(array)
+  }
+
+  getTotalItems = () =>{
+    let total = 0;
+    for(let i = 0; i < this.state.quantity.length; i++){
+      total = total + this.state.quantity[i];
+      console.log(this.state.quantity[i].amount)
+    }
+    this.setState({totalItems: total})
+    // console.log(this.state.totalItems)
+	}
+
+  componentWillMount(){
+    this.getQuantity();
+    this.getTotalItems();
+	}
+    
+  render() {
     return (
       <div>
         <Header />
-        <ItemProperties itemsAmout={this.state.quantity} />
-        {cart}
-        <CustomerHelp />
+        <ItemProperties amount={this.state.totalItems}/>
+        <div className="itemInTheCart">
+        
+        {
+          this.state.cart.map((shirt, i) => {
+          return ( 
+            <Item 
+              name={shirt.name} 
+              price={shirt.price} 
+              oldPrice={shirt.oldPrice} 
+              color={shirt.color} 
+              style1={shirt.style} 
+              image={shirt.image}
+              // quantity={this.state.quantity[i].amount}
+              size={this.state.size}
+              key={shirt.id}
+              onClick={(e) => this.handleRemoveItem(shirt)}
+            />
+            ) 
+          })
+        }
+        </div>
+        <div className="checkout__section">
+          <CustomerHelp />
+          <Checkout />
+        </div>
       </div>
     );
   }
