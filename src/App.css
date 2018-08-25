@@ -1,0 +1,186 @@
+
+/* GENERAL SETTINGS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+  font-weight: 100;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 1rem;
+  padding: 2rem 3rem;
+}
+
+/*--------HEADER--------*/
+
+
+.header {
+  margin: 1rem 0;
+}
+
+.header_name {
+  margin: 1rem 0;
+  font-size: 3rem;
+}
+
+.header_emptyCartSentence {
+  margin: 1rem 0;
+  color: grey;
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
+  border-bottom: .1rem solid rgb(212, 212, 212);
+}
+
+/*--------ITEM-PROPERTIES--------*/
+
+.itemProperties {
+  display: flex;
+  border-bottom: 0.2rem solid rgb(155, 155, 155);
+}
+
+.itemProperties_itemsAmount,
+.itemProperties_size,
+.itemProperties_quantity,
+.itemProperties_price {
+  color: grey;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.itemProperties_itemsAmount {
+  flex: 4;
+  margin-left: 2rem;
+}
+
+.itemProperties_size,
+.itemProperties_price {
+  flex: 1;
+}
+
+.itemProperties_quantity {
+  flex: 2;
+}
+
+/*--------ITEM-CARD--------*/
+
+.item {
+  display: flex;
+  padding: 3rem 0;
+  border-bottom: .1rem solid rgb(212, 212, 212);
+}
+
+.item__properties {
+  display: flex;
+}
+
+.item__description-container {
+  width: 100%;
+}
+
+.item__name {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  flex: 3.5;
+}
+
+.item__size {
+  flex: 1;
+}
+
+.item__quantity {
+  flex: 2;
+  padding: .5rem 1rem .5rem 1.5rem;
+  /* border: 1px solid rgb(212, 212, 212); */
+}
+
+.item__price {
+  flex: 1;
+  font-size: 2.1rem;
+  font-weight: 900;
+  display: flex;
+}
+
+.item__priceWithOld {
+  flex: 1;
+}
+
+.item__image {
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.item__style,
+.item__color {
+  color: grey;
+  margin: .5rem 0;
+}
+
+.item__priceNotRelevant {
+  color: rgb(209, 209, 209);
+  text-decoration: line-through;
+  font-size: 1.8rem;
+  display: flex;
+}
+
+.item__dollarSign {
+  font-size: 1.5rem;
+}
+
+.itemOptions {
+  display: flex;
+  margin-top: 25px;
+}
+
+.itemOptions p {
+  font-size: 1.3rem;
+  color: grey;
+}
+
+.itemOptions p:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.blabla {
+  border-bottom: 1rem solid rgb(212, 212, 212);
+  background: red;
+}
+
+/*--------CHECKOUT--------*/
+
+/*---CUSTOMR-SERVICE---*/
+
+.customerHelp {
+  margin: 3rem 0 ;
+}
+
+.customerHelp__mainLine {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem; 
+  color: grey;
+}
+
+.customerHelp__customerServiceLine {
+  font-size: 1.5rem;
+  color: grey;
+}
+
+.customerHelp__chatLine {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.customerHelp__chatLine a { 
+  color: rgb(48, 48, 48);
+}
+
+/*---BILL---*/
+
