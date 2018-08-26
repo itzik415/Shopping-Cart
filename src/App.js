@@ -10,8 +10,9 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.getQuantity = this.getQuantity.bind(this);
     this.state = {
-      quantity: [],
+      quantity: {},
       totalItems: 0,
       size: ['S', 'M', 'L'],
       color: ['red', 'blue', 'black'],
@@ -24,29 +25,41 @@ class App extends Component {
       return shirt.id !== item.id
     })
     this.setState({cart: newCart})
+    ///////////////////////////////////////////////////////////
+    const newQuantity = this.state.quantity.filter((item) => {
+      return shirt.id !== item.id
+    })
+    this.setState({quantity: newQuantity})
+    console.log(newQuantity)
+    ///////////////////////////////////////////////////////////
+    let totall = 0;
+    for(let i = 0; i < newQuantity.length; i++){
+      totall = totall + newQuantity[i].amount;
+    }
+    this.setState({totalItems: totall})
   }
 
   getQuantity = () =>{
-    const array = shirtsList.map((shirt) => {
-      return {amount: shirt.quantity}
+    const array = shirtsList.map((shirt, i) => {
+      return {amount: shirt.quantity,id: i+1}
     })
-    console.log(this.state.quantity) 
     this.setState({quantity: array})
-    console.log(array)
   }
 
   getTotalItems = () =>{
     let total = 0;
     for(let i = 0; i < this.state.quantity.length; i++){
-      total = total + this.state.quantity[i];
-      console.log(this.state.quantity[i].amount)
+      total = total + this.state.quantity[i].amount;
     }
     this.setState({totalItems: total})
-    // console.log(this.state.totalItems)
-	}
+
+  }
 
   componentWillMount(){
     this.getQuantity();
+  }
+  
+  componentDidMount(){
     this.getTotalItems();
 	}
     
@@ -67,7 +80,7 @@ class App extends Component {
               color={shirt.color} 
               style1={shirt.style} 
               image={shirt.image}
-              // quantity={this.state.quantity[i].amount}
+              quantity={this.state.quantity[i].amount}
               size={this.state.size}
               key={shirt.id}
               onClick={(e) => this.handleRemoveItem(shirt)}
