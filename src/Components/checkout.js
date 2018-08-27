@@ -1,6 +1,6 @@
 import React from 'react';
 
-const checkout = () => {
+const checkout = (props) => {
     return (
         <div className="checkout">
             <div className="checkout__giftCard-enter">
@@ -12,7 +12,7 @@ const checkout = () => {
             <div className="checkout__price">
                 <div className="checkout__subTotal">
                     <h2>SUB TOTAL</h2>
-                    <p><span className="item__dollarSign">$&nbsp;</span> price</p>
+                    <p><span className="item__dollarSign">$&nbsp;</span>{props.change}</p>
                 </div>
                 <div className="checkout__promotionCode">
                     <h2>PROMOTION CODE BLABLA APPLIED</h2>

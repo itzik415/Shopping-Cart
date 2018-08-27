@@ -15,9 +15,9 @@ export const shirtsList = [
         name: 'poseidon tshirt',
         style: 'K8F7DH3J',
         color: 'black',
-        oldPrice: '20.00',
+        oldPrice: '20.10',
         quantity: 2,
-        price: '20.00'
+        price: '20.10'
     },
     {
         id: 3,

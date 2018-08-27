@@ -10,7 +10,6 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.getQuantity = this.getQuantity.bind(this);
     this.state = {
       quantity: {},
       totalItems: 0,
@@ -19,6 +18,7 @@ class App extends Component {
       cart: shirtsList
     }
   }
+
   
   handleRemoveItem = (shirt) => {
     const newCart = this.state.cart.filter((item) => {
@@ -37,6 +37,20 @@ class App extends Component {
       totall = totall + newQuantity[i].amount;
     }
     this.setState({totalItems: totall})
+  }
+
+  subTotalPrice = () => {
+    let total = 0;
+    const quantity = this.state.quantity;
+    const cart = this.state.cart;
+    for(let i = 0; i < quantity.length; i++){
+      if(cart[i].price === cart[i].oldPrice){
+        total = total + quantity[i].amount * cart[i].price;
+      } else {
+        total = total + quantity[i].amount * cart[i].oldPrice;
+      }
+    }
+    return total.toFixed(2)
   }
 
   getQuantity = () =>{
@@ -61,6 +75,7 @@ class App extends Component {
   
   componentDidMount(){
     this.getTotalItems();
+    this.subTotalPrice();
 	}
     
   render() {
@@ -91,7 +106,9 @@ class App extends Component {
         </div>
         <div className="checkout__section">
           <CustomerHelp />
-          <Checkout />
+          <Checkout 
+            change={this.subTotalPrice()}
+          />
         </div>
       </div>
     );

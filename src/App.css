@@ -262,6 +262,9 @@ body {
 .checkout__promotionCode p,
 .checkout__shipping p,
 .checkout__estimatedTotal p { 
+  display: flex;
+  font-size: 2.1rem;
+  font-weight: 900;
   flex: 0.1;
 }
 
