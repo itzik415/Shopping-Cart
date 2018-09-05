@@ -7,6 +7,7 @@ export const shirtsList = [
         color: 'light-blue',
         oldPrice: '15.00',
         quantity: 1,
+        size: 'S',
         price: '15.00'
     },
     {
@@ -17,6 +18,7 @@ export const shirtsList = [
         color: 'black',
         oldPrice: '20.10',
         quantity: 2,
+        size: 'S',
         price: '20.10'
     },
     {
@@ -27,6 +29,7 @@ export const shirtsList = [
         color: 'light-blue',
         oldPrice: '21.00',
         quantity: 3,
+        size: 'S',
         price: '21.00'
     },
     {
@@ -37,6 +40,7 @@ export const shirtsList = [
         color: 'yellow',
         oldPrice: '21.00',
         quantity: 4,
+        size: 'S',
         price: '9.00'
     },
     {
@@ -47,6 +51,7 @@ export const shirtsList = [
         color: 'light-blue',
         oldPrice: '5.00',
         quantity: 5,
+        size: 'S',
         price: '5.00'
     }
 ]

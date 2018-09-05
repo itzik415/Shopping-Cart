@@ -152,9 +152,171 @@ body {
   cursor: pointer;
 }
 
-.blabla {
-  border-bottom: 1rem solid rgb(212, 212, 212);
-  background: red;
+
+/*--------EDIT-PAGE--------*/
+.mainEditPage {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.editPage__centerDiv {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(39, 39, 39);
+  width: 70rem;
+  height: 48rem;
+  background-color: white;
+}
+
+.x-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.closing-button {
+  width: 15px;
+  height: 15px;
+  margin: 10px;
+}
+
+.closing-button:hover {
+  cursor: pointer;
+}
+
+.editPage__centerDiv-content {
+  display: flex;
+  padding: 10px;
+  height: 100%;
+  align-items: center;
+}
+
+.editPage__content {
+  width: 40%;
+  margin: 0 7% 0 3%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 10px solid rgb(223, 221, 221);
+}
+
+.editPage__image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+.editPage__image {
+  width: 240px;
+  height: 370px;
+}
+
+.editPage__itemName {
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: grey;
+}
+
+.editPage__itemPrice {
+  font-size: 3rem;
+  display: flex;
+  padding: 10px 0 30px 0;
+  font-weight: 900;
+  color: grey;
+}
+
+.editPage__itemstyle {
+  font-size: 1.5rem;
+  padding: 0 0 10px 0;
+  font-weight: 900;
+  color: rgb(168, 168, 168);
+}
+
+.editPage__colorSection {
+  display: flex;
+}
+/* 
+.editPage__itemColor1,
+.editPage__itemColor2,
+.editPage__itemColor3 {
+  border: 1px solid rgb(54, 54, 54);
+  padding: 3px 14px; 
+  margin: 3px;
+}
+
+.editPage__itemColor1:hover,
+.editPage__itemColor2:hover,
+.editPage__itemColor3:hover {
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.editPage__itemColor1 {
+  background-color: lightblue;
+  color: lightblue;
+  
+}
+
+.editPage__itemColor2 {
+  background-color: black;
+  color: black;
+}
+
+.editPage__itemColor3 {
+  background-color: yellow;
+  color: yellow; 
+} */
+
+.editPage__editButton {
+  font-size: 1.5rem;
+  padding: 8px 48px;
+  margin: 10px;
+  font-weight: 400;
+  border-radius: 3px;
+  color:white;
+  background-color: #0073b1;
+}
+
+.editPage__editButton:hover {
+  cursor: pointer;
+}
+
+.editPage__productDetail {
+  color: grey;
+  font-size: 1.3rem;
+}
+
+.editPage__colorText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(184, 184, 184);
+}
+
+select {
+  width: 90px;
+  height: 23px;
+  margin: 10px 5px 10px 0;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.editPage__itemAmount {
+  width: 50px;
+  height: 30px;
+  padding: 5px;
+  font-size: 1.2rem;
 }
 
 /*--------CHECKOUT--------*/
@@ -243,29 +405,66 @@ body {
 }
 
 .checkout__subTotal,
-.checkout__promotionCode,
+.checkout__promotionCode-applied,
 .checkout__shipping {
   display: flex;
   margin: 15px 0;
   color: rgb(70, 69, 69);
 }
 
+
+.checkout__promotionCode-applied h2 {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.checkout__promotionCode-applied p {
+  display: flex;
+  font-size: 2.1rem;
+  font-weight: 900;
+}
+
 .checkout__subTotal h2,
-.checkout__promotionCode h2,
-.checkout__shipping h2,
+.checkout__shipping div,
 .checkout__estimatedTotal h2{ 
   flex: 1;
   margin-left: 15px;
 }
 
 .checkout__subTotal p,
-.checkout__promotionCode p,
-.checkout__shipping p,
-.checkout__estimatedTotal p { 
+.checkout__shipping p { 
   display: flex;
   font-size: 2.1rem;
   font-weight: 900;
-  flex: 0.1;
+  color: rgb(78, 78, 78)
+}
+
+.checkout__estimatedTotal p {
+  display: flex;
+  font-size: 2.6rem;
+  font-weight: 900;
+}
+
+.checkout__shipping--leftSide {
+  display: flex;
+  flex-direction: column;
+}
+
+h5 {
+  color: grey;
+  font-size: 1.1rem;
+  margin-top: 3px;
+}
+
+.shipping-price {
+  font-size: 2.1rem;
+  font-weight: 900;
+  margin-left: 15px;
+}
+
+.free-sign {
+  color: grey;
+  font-size: 1.5rem;
 }
 
 .checkout__estimatedTotal {
@@ -301,7 +500,7 @@ body {
   padding: 12px 15px;
   font-size: 1.8rem;
   text-decoration: none;
-  background-color: rgb(67, 67, 230);
+  background-color: #0073b1;
   border-radius: 2px;
   margin: 10px 0px;
 }

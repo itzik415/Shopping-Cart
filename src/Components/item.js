@@ -10,7 +10,7 @@ const item = (props) => {
             <div className='item__description-container'>
                 <div className='item__properties'>
                     <h2 className='item__name'>{props.name}</h2>
-                    <h2 className='item__size'>{props.size[1]}</h2>
+                    <h2 className='item__size'>{props.size}</h2>
                     <h2 className='item__quantity'>{props.quantity}</h2>
                     {
                         (props.price) === (props.oldPrice) ? 
@@ -25,7 +25,7 @@ const item = (props) => {
                 </div>
                 <h2 className='item__style'>Style #: {props.style1}</h2>
                 <h2 className='item__color'>Color: {props.color}</h2>
-                <ItemOptions shirt={props.shirt} onClick={props.onClick}/>
+                <ItemOptions shirt={props.shirt} remove={props.handleRemoveItem} edit={props.openItemEvent}/>
             </div>
         </div>
     );
