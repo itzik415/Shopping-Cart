@@ -29,11 +29,19 @@ class App extends Component {
       return shirt.id !== item.id
     })
     this.setState({cart: newCart})
+    console.log(this.state.cart)
     //--------------------------------------------------------//
     const newQuantity = this.state.quantity.filter((item) => {
       return shirt.id !== item.id
     })
     this.setState({quantity: newQuantity})
+    console.log(this.state.quantity)
+    //--------------------------------------------------------//
+    const newSizing = this.state.sizing.filter((item) => {
+      return shirt.id !== item.id
+    })
+    this.setState({sizing: newSizing})
+    console.log(this.state.sizing)
     //--------------------------------------------------------//
     let totall = 0;
     for(let i = 0; i < newQuantity.length; i++){
@@ -53,30 +61,35 @@ class App extends Component {
 
 
 // Checkout component
-
   subTotalPrice = () => {
     let total = 0;
-    const quantity = this.state.quantity;
-    const cart = this.state.cart;
+    let quantity = this.state.quantity;
+    let cart = this.state.cart;
     for(let i = 0; i < quantity.length; i++){
-      if(cart[i].price === cart[i].oldPrice){
+      if(cart[i].price === cart[i].oldPrice && cart.length > 0){
         total = total + quantity[i].amount * cart[i].price;
-      } else {
-        total = total + quantity[i].amount * cart[i].oldPrice;
+      } else{
+        total = total + quantity[i].amount * cart[i].price;
       }
     }
-    return total.toFixed(2)
+    // console.log("/----------------------------------------------------------------/")
+    return total.toFixed(2);
   }
 
   onKeyPress = (event) => {
+    this.rightCode = event.target.value + "5";
     if (event.key === 'Enter' && event.target.value === 'itzik415') {
       this.setState({searchField: event.target.value})
       this.setState({rightToGetCoupon: true})
     }
   }
 
-  onClickApply = (event) => {
-    this.setState({searchField: event.target.value})
+  onClickApply = () => {
+    console.log(this.rightCode)
+    if (this.rightCode === 'itzik415') {
+      this.setState({searchField: this.rightCode})
+      this.setState({rightToGetCoupon: true})
+    }
   }
 
 // EditPage component
@@ -96,17 +109,46 @@ class App extends Component {
     let currentQuantity = event.target.value;
     this.newQuantity = this.state.quantity.map((i, num) => {
       if(i.id === shirt.id){
-        return {amount: currentQuantity,id: num+1}
+        return {amount: Number(currentQuantity), id: num+1}
       }else {
-        return {amount: i.amount ,id: num+1}
+        return {amount: Number(i.amount) ,id: num+1}
       }
     })
   }
 
-  editButton(){
-    this.setState({quantity: this.newQuantity})
-    this.setState({sizing: this.newSizes})
+  editButton = () =>{
+    let total = 0;
+    
+    // Setting up "sizing" state after pressing the edit button
+    if(this.newSizes === undefined) {
+      this.setState({sizing: this.state.cart.map((shirt, i) => {
+        return {size: shirt.size,id: i+1}
+      })})
+    }else {
+      this.setState({sizing: this.newSizes})
+    }
+
+    // Setting up "quantity" and "totalItems" state after pressing the edit button
+    if(this.newQuantity === undefined) {
+      this.setState({quantity: this.state.cart.map((shirt, i) => {
+        return {amount: shirt.quantity,id: i+1}   
+      })})
+
+                                                                        for(let i = 0; i < this.state.quantity.length; i++){
+                                                                          total = total + this.state.quantity[i].amount;
+                                                                        }
+                                                                        this.setState({totalItems: total})
+    }else {
+      this.setState({quantity: this.newQuantity})  
+
+                                                                        for(let i = 0; i < this.newQuantity.length; i++){
+                                                                          total = total + this.newQuantity[i].amount;
+                                                                        }
+                                                                        this.setState({totalItems: total})
+    }
+
     document.querySelector('.mainEditPage').style.display = 'none';
+
   }
 
   exitButton() {
@@ -114,13 +156,27 @@ class App extends Component {
   }
 
 
-// Reeact lifeCycle methods
+// React lifeCycle methods
+
+componentWillMount(){
+  this.getQuantity();
+  this.getSize();
+}
+
+componentDidMount(){
+  this.getTotalItems();
+}
+
+//--------------------------------------------------------//
+
+  //----------------------------------------------------------------------------------------------------------------//
   getSize = () =>{
     const array = shirtsList.map((shirt, i) => {
       return {size: shirt.size,id: i+1}
     })
     this.setState({sizing: array})
   }
+  //----------------------------------------------------------------------------------------------------------------//
 
   getQuantity = () =>{
     const array = shirtsList.map((shirt, i) => {
@@ -135,17 +191,8 @@ class App extends Component {
       total = total + this.state.quantity[i].amount;
     }
     this.setState({totalItems: total})
+    
   }
-
-  componentWillMount(){
-    this.getQuantity();
-    this.getSize();
-  }
-  
-  componentDidMount(){
-    this.getTotalItems();
-    this.subTotalPrice();
-	}
     
   render() {
     return (
@@ -179,7 +226,7 @@ class App extends Component {
           <Checkout 
             change={this.subTotalPrice()}
             onKeyPress={this.onKeyPress}
-            onClick={this.onClickApply}
+            onClickApply={this.onClickApply}
             search={this.state.searchField}
             getCoupon={this.state.rightToGetCoupon}
           />

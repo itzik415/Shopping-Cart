@@ -1,9 +1,9 @@
 import React from 'react';
 
 const checkout = (props) => {
-    let subTotal = props.change;
+    let subTotal = props.change * 1;
     let promotionCode = props.change * 0.1;
-    let shippping = props.change * 0.2;
+    let shipping = props.change * 0.2;
     return (
         <div className="checkout">
             <div className="checkout__giftCard-enter">
@@ -11,7 +11,7 @@ const checkout = (props) => {
                 <input
                     className="checkout__giftCard-input" 
                     onKeyPress={props.onKeyPress}/>
-                <h2 className="checkout__giftCard-apply" onClick={props.onClick}>APPLY</h2>
+                <h2 className="checkout__giftCard-apply" onClick={props.onClickApply}>APPLY</h2>
             </div>
             <div className="checkout__price">
                 <div className="checkout__subTotal">
@@ -40,7 +40,7 @@ const checkout = (props) => {
                     {
                         (props.change) > 50?
                         <span className="free-sign">FREE</span>:
-                        <span className="item__dollarSign">$&nbsp;<span className="shipping-price">{(props.change * 0.2).toFixed(2)}</span></span> 
+                        <span className="item__dollarSign">$&nbsp;<span className="shipping-price">{shipping.toFixed(2)}</span></span> 
                     }    
                     </p>
                 </div>
@@ -50,22 +50,22 @@ const checkout = (props) => {
                 <p><span className="item__dollarSign">$&nbsp;</span>
                     {
                         subTotal > 50 && props.getCoupon === true?
-                            subTotal - promotionCode:
+                            (subTotal - promotionCode).toFixed(2):
                             null              
                     }
                     {
                         subTotal > 50 && props.getCoupon === false?
-                            subTotal:
+                            subTotal.toFixed(2):
                             null
                     }
                     {
                         subTotal < 50 && props.getCoupon === false?
-                            subTotal + shippping:
+                            (subTotal + shipping).toFixed(2):
                             null
                     }
                     {
                         subTotal < 50 && props.getCoupon === true?
-                            subTotal + shippping - promotionCode:
+                            (subTotal + shipping - promotionCode).toFixed(2):
                             null
                     }
                 </p>
