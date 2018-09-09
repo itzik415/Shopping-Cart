@@ -247,37 +247,6 @@ body {
 .editPage__colorSection {
   display: flex;
 }
-/* 
-.editPage__itemColor1,
-.editPage__itemColor2,
-.editPage__itemColor3 {
-  border: 1px solid rgb(54, 54, 54);
-  padding: 3px 14px; 
-  margin: 3px;
-}
-
-.editPage__itemColor1:hover,
-.editPage__itemColor2:hover,
-.editPage__itemColor3:hover {
-  cursor: pointer;
-  border: 1px solid white;
-}
-
-.editPage__itemColor1 {
-  background-color: lightblue;
-  color: lightblue;
-  
-}
-
-.editPage__itemColor2 {
-  background-color: black;
-  color: black;
-}
-
-.editPage__itemColor3 {
-  background-color: yellow;
-  color: yellow; 
-} */
 
 .editPage__editButton {
   font-size: 1.5rem;

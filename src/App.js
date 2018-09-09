@@ -29,19 +29,16 @@ class App extends Component {
       return shirt.id !== item.id
     })
     this.setState({cart: newCart})
-    console.log(this.state.cart)
     //--------------------------------------------------------//
     const newQuantity = this.state.quantity.filter((item) => {
       return shirt.id !== item.id
     })
     this.setState({quantity: newQuantity})
-    console.log(this.state.quantity)
     //--------------------------------------------------------//
     const newSizing = this.state.sizing.filter((item) => {
       return shirt.id !== item.id
     })
     this.setState({sizing: newSizing})
-    console.log(this.state.sizing)
     //--------------------------------------------------------//
     let totall = 0;
     for(let i = 0; i < newQuantity.length; i++){
@@ -72,7 +69,6 @@ class App extends Component {
         total = total + quantity[i].amount * cart[i].price;
       }
     }
-    // console.log("/----------------------------------------------------------------/")
     return total.toFixed(2);
   }
 
@@ -85,7 +81,6 @@ class App extends Component {
   }
 
   onClickApply = () => {
-    console.log(this.rightCode)
     if (this.rightCode === 'itzik415') {
       this.setState({searchField: this.rightCode})
       this.setState({rightToGetCoupon: true})
@@ -134,17 +129,18 @@ class App extends Component {
         return {amount: shirt.quantity,id: i+1}   
       })})
 
-                                                                        for(let i = 0; i < this.state.quantity.length; i++){
-                                                                          total = total + this.state.quantity[i].amount;
-                                                                        }
-                                                                        this.setState({totalItems: total})
+      for(let i = 0; i < this.state.quantity.length; i++){
+        total = total + this.state.quantity[i].amount;
+      }
+      this.setState({totalItems: total})
+
     }else {
       this.setState({quantity: this.newQuantity})  
 
-                                                                        for(let i = 0; i < this.newQuantity.length; i++){
-                                                                          total = total + this.newQuantity[i].amount;
-                                                                        }
-                                                                        this.setState({totalItems: total})
+      for(let i = 0; i < this.newQuantity.length; i++){
+        total = total + this.newQuantity[i].amount;
+      }
+      this.setState({totalItems: total})
     }
 
     document.querySelector('.mainEditPage').style.display = 'none';
@@ -169,14 +165,14 @@ componentDidMount(){
 
 //--------------------------------------------------------//
 
-  //----------------------------------------------------------------------------------------------------------------//
+  
   getSize = () =>{
     const array = shirtsList.map((shirt, i) => {
       return {size: shirt.size,id: i+1}
     })
     this.setState({sizing: array})
   }
-  //----------------------------------------------------------------------------------------------------------------//
+  
 
   getQuantity = () =>{
     const array = shirtsList.map((shirt, i) => {

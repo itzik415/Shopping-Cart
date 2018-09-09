@@ -1,5 +1,4 @@
 import React from 'react';
-// import EditPage from './editPage';
 
 const itemOptions = (props) => {
     return (
